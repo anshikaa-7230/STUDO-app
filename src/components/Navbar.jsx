@@ -23,7 +23,8 @@ export default function Navbar() {
     studentProfile,
     mobileMenuOpen,
     setMobileMenuOpen,
-    setProfileModalOpen
+    setProfileModalOpen,
+    replayIntro
   } = useApp();
 
   const [notificationOpen, setNotificationOpen] = useState(false);
@@ -137,8 +138,18 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* Right: Notifications & Profile */}
+            {/* Right: Intro Replay, Notifications & Profile */}
             <div className="flex items-center gap-2.5">
+              {/* Cinematic Intro Replay Button */}
+              <button
+                onClick={replayIntro}
+                title="Play Cinematic Opening"
+                aria-label="Play Cinematic Opening Animation"
+                className="p-2.5 rounded-xl border border-[#E8E8EE] bg-white text-[#737386] hover:text-[#4919A4] hover:bg-[#E9E1FF]/40 transition-colors focus:outline-none"
+              >
+                <Sparkles className="w-4 h-4 text-[#8B5CF6]" />
+              </button>
+
               {/* Notification Bell Dropdown */}
               <div className="relative">
                 <button

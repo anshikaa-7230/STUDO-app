@@ -1,10 +1,10 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { SUBJECT_CONFIG } from '../data/resources';
-import { Heart } from 'lucide-react';
+import { Heart, Sparkles } from 'lucide-react';
 
 export default function Footer() {
-  const { navigateTo, selectSubjectAndExplore, setFilters } = useApp();
+  const { navigateTo, selectSubjectAndExplore, setFilters, replayIntro } = useApp();
 
   return (
     <footer className="mt-20 border-t border-[#E8E8EE] bg-white text-[#737386] text-xs">
@@ -57,6 +57,15 @@ export default function Footer() {
                   className="hover:text-[#24243A] transition-colors"
                 >
                   My Saved Resources
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={replayIntro}
+                  className="hover:text-[#4919A4] text-[#6941C6] font-semibold flex items-center gap-1.5 transition-colors"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-[#8B5CF6]" />
+                  <span>Replay Intro Animation</span>
                 </button>
               </li>
             </ul>

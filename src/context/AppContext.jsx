@@ -13,6 +13,9 @@ export function AppProvider({ children }) {
   const [currentScreen, setCurrentScreen] = useState('dashboard');
   const [activeResourceId, setActiveResourceId] = useState(null);
 
+  // Cinematic Intro state (runs 2-3s on start, with replay capability)
+  const [showIntro, setShowIntro] = useState(true);
+
   // Resources state (allowing additions/updates if needed)
   const [resources] = useState(INITIAL_RESOURCES);
 
@@ -234,6 +237,9 @@ export function AppProvider({ children }) {
         setMobileFilterOpen,
         profileModalOpen,
         setProfileModalOpen,
+        showIntro,
+        setShowIntro,
+        replayIntro: () => setShowIntro(true),
         toast,
         showToast
       }}
