@@ -8,11 +8,7 @@ import {
   RotateCcw,
   CheckCircle2,
   XCircle,
-  HelpCircle,
-  Play,
   Clock,
-  Sparkles,
-  BookOpen,
   Award
 } from 'lucide-react';
 
@@ -35,11 +31,11 @@ export default function ResourcePreview({ resource }) {
     const pageData = resource.pdfPages[currentPage] || resource.pdfPages[0];
 
     return (
-      <div className="bg-[#1E1E2E] rounded-3xl overflow-hidden border border-[#303048] shadow-card">
+      <div className="bg-[#12162A] rounded-3xl overflow-hidden border border-white/10 shadow-glass">
         {/* PDF Viewer Top Bar */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-3 bg-[#181825] border-b border-[#303048] text-slate-300 text-xs">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3 bg-[#0B0F1F] border-b border-white/10 text-slate-300 text-xs">
           <div className="flex items-center gap-2">
-            <FileText className="w-4 h-4 text-[#E9E1FF]" />
+            <FileText className="w-4 h-4 text-cyan-400" />
             <span className="font-semibold text-white truncate max-w-[200px] sm:max-w-xs">
               {resource.title}
             </span>
@@ -47,7 +43,7 @@ export default function ResourcePreview({ resource }) {
 
           {/* Navigation Controls */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1 bg-[#252538] px-2 py-1 rounded-xl">
+            <div className="flex items-center gap-1 bg-white/5 border border-white/10 px-2 py-1 rounded-xl">
               <button
                 onClick={() => setCurrentPage((p) => Math.max(0, p - 1))}
                 disabled={currentPage === 0}
@@ -70,7 +66,7 @@ export default function ResourcePreview({ resource }) {
             </div>
 
             {/* Zoom Controls */}
-            <div className="hidden sm:flex items-center gap-1 bg-[#252538] px-2 py-1 rounded-xl">
+            <div className="hidden sm:flex items-center gap-1 bg-white/5 border border-white/10 px-2 py-1 rounded-xl">
               <button
                 onClick={() => setZoomLevel((z) => Math.max(80, z - 10))}
                 title="Zoom Out"
@@ -98,22 +94,22 @@ export default function ResourcePreview({ resource }) {
         </div>
 
         {/* PDF Simulated Page Canvas */}
-        <div className="p-4 sm:p-8 bg-[#181825]/60 min-h-[420px] flex items-center justify-center overflow-auto">
+        <div className="p-4 sm:p-8 bg-[#080B16] min-h-[420px] flex items-center justify-center overflow-auto">
           <div
             className="w-full max-w-3xl bg-white text-[#24243A] rounded-2xl p-6 sm:p-10 shadow-2xl transition-all duration-200"
             style={{ transform: `scale(${zoomLevel / 100})`, transformOrigin: 'top center' }}
           >
             {/* Document Header in Canvas */}
-            <div className="flex items-center justify-between pb-4 mb-6 border-b-2 border-[#E9E1FF]">
+            <div className="flex items-center justify-between pb-4 mb-6 border-b-2 border-cyan-400">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg bg-[#24243A] text-[#E9E1FF] font-extrabold text-xs flex items-center justify-center">
+                <div className="w-7 h-7 rounded-lg bg-[#24243A] text-cyan-300 font-extrabold text-xs flex items-center justify-center">
                   S
                 </div>
                 <span className="text-xs font-extrabold tracking-wider text-[#24243A]">
                   STUDO ACADEMIC VAULT
                 </span>
               </div>
-              <span className="text-[11px] font-bold text-[#6941C6] bg-[#E9E1FF] px-2.5 py-0.5 rounded-full">
+              <span className="text-[11px] font-bold text-cyan-800 bg-cyan-100 px-2.5 py-0.5 rounded-full">
                 Page {pageData.pageNumber} of {totalPages}
               </span>
             </div>
@@ -122,12 +118,12 @@ export default function ResourcePreview({ resource }) {
               {pageData.title}
             </h3>
 
-            {/* Document Text Content with proper monospace/markdown style formatting */}
+            {/* Document Text Content */}
             <div className="text-xs sm:text-sm text-[#38384E] leading-relaxed whitespace-pre-wrap font-sans bg-[#FAFAFC] p-5 sm:p-6 rounded-xl border border-[#E8E8EE]">
               {pageData.content}
             </div>
 
-            {/* Document Footer in Canvas */}
+            {/* Document Footer */}
             <div className="mt-8 pt-4 border-t border-[#E8E8EE] flex items-center justify-between text-[10px] text-[#737386]">
               <span>Verified for {resource.board} • {resource.classLevel} {resource.subject}</span>
               <span>STUDO — Think. Discover. Achieve.</span>
@@ -136,15 +132,15 @@ export default function ResourcePreview({ resource }) {
         </div>
 
         {/* Bottom Page Thumbnails */}
-        <div className="px-6 py-3 bg-[#181825] border-t border-[#303048] flex items-center justify-center gap-2">
+        <div className="px-6 py-3 bg-[#0B0F1F] border-t border-white/10 flex items-center justify-center gap-2">
           {resource.pdfPages.map((page, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentPage(idx)}
               className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
                 currentPage === idx
-                  ? 'bg-[#E9E1FF] text-[#4919A4]'
-                  : 'bg-[#252538] text-slate-400 hover:text-white'
+                  ? 'bg-cyan-400 text-slate-950 font-black'
+                  : 'bg-white/5 border border-white/10 text-slate-400 hover:text-white'
               }`}
             >
               Page {idx + 1}
@@ -159,7 +155,7 @@ export default function ResourcePreview({ resource }) {
   if (resource.previewType === 'video') {
     return (
       <div className="space-y-6">
-        <div className="relative rounded-3xl overflow-hidden bg-black shadow-card aspect-video border border-[#303048]">
+        <div className="relative rounded-3xl overflow-hidden bg-black shadow-glass aspect-video border border-white/10">
           <iframe
             src={resource.videoUrl || 'https://www.youtube.com/embed/o_6f_0C0pPQ'}
             title={resource.title}
@@ -171,23 +167,23 @@ export default function ResourcePreview({ resource }) {
 
         {/* Video Chapters / Timestamps */}
         {resource.videoNotes && resource.videoNotes.length > 0 && (
-          <div className="bg-white rounded-2xl border border-[#E8E8EE] p-5 shadow-subtle">
+          <div className="glass-card rounded-2xl border border-white/10 p-5 shadow-glass text-white">
             <div className="flex items-center gap-2 mb-3">
-              <Clock className="w-4 h-4 text-[#6941C6]" />
-              <h3 className="text-sm font-bold text-[#24243A]">Lecture Timeline & Key Topics</h3>
+              <Clock className="w-4 h-4 text-cyan-400" />
+              <h3 className="text-sm font-bold text-white">Lecture Timeline & Key Topics</h3>
             </div>
 
             <div className="space-y-2">
               {resource.videoNotes.map((note, idx) => (
                 <div
                   key={idx}
-                  className="p-3 rounded-xl bg-[#FAFAFC] border border-[#E8E8EE] flex flex-col sm:flex-row sm:items-start justify-between gap-2"
+                  className="p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-start justify-between gap-2"
                 >
                   <div>
-                    <span className="text-xs font-bold text-[#24243A]">{note.title}</span>
-                    <p className="text-xs text-[#737386] mt-0.5">{note.summary}</p>
+                    <span className="text-xs font-bold text-white">{note.title}</span>
+                    <p className="text-xs text-slate-400 mt-0.5">{note.summary}</p>
                   </div>
-                  <span className="font-mono text-[11px] font-bold text-[#025482] bg-[#DCEEFF] px-2.5 py-1 rounded-md self-start sm:self-auto shrink-0">
+                  <span className="font-mono text-[11px] font-bold text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-1 rounded-md self-start sm:self-auto shrink-0">
                     {note.timestamp}
                   </span>
                 </div>
@@ -221,24 +217,24 @@ export default function ResourcePreview({ resource }) {
     }).length;
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-6 text-white">
         {/* Practice Header & Score Tracker */}
-        <div className="bg-white rounded-2xl border border-[#E8E8EE] p-5 shadow-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="glass-card rounded-2xl border border-white/10 p-5 shadow-glass flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#FFF0C9] text-[#8F4B00] flex items-center justify-center font-bold">
+            <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center justify-center font-bold">
               <Award className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-[#24243A]">Interactive Practice Mode</h3>
-              <p className="text-xs text-[#737386]">
+              <h3 className="text-sm font-bold text-white">Interactive Practice Mode</h3>
+              <p className="text-xs text-slate-400">
                 Test your knowledge with immediate feedback & step-by-step solutions
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 bg-[#FAFAFC] px-4 py-2 rounded-xl border border-[#E8E8EE]">
-            <span className="text-xs text-[#737386] font-semibold">Your Score:</span>
-            <span className="text-sm font-extrabold text-[#24243A]">
+          <div className="flex items-center gap-3 bg-white/5 px-4 py-2 rounded-xl border border-white/10">
+            <span className="text-xs text-slate-400 font-semibold">Your Score:</span>
+            <span className="text-sm font-extrabold text-cyan-300">
               {correctCount} / {resource.questions.length} Correct
             </span>
           </div>
@@ -254,13 +250,13 @@ export default function ResourcePreview({ resource }) {
             return (
               <div
                 key={q.id}
-                className="bg-white rounded-2xl border border-[#E8E8EE] p-5 sm:p-6 shadow-subtle space-y-4"
+                className="glass-card rounded-2xl border border-white/10 p-5 sm:p-6 shadow-glass space-y-4"
               >
                 <div className="flex items-start gap-3">
-                  <span className="w-6 h-6 rounded-lg bg-[#24243A] text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="w-6 h-6 rounded-lg bg-gradient-to-tr from-cyan-400 to-blue-500 text-slate-950 text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
                     {idx + 1}
                   </span>
-                  <p className="text-sm font-bold text-[#24243A] leading-relaxed">
+                  <p className="text-sm font-bold text-white leading-relaxed">
                     {q.prompt}
                   </p>
                 </div>
@@ -270,16 +266,16 @@ export default function ResourcePreview({ resource }) {
                   {q.options.map((opt, optIdx) => {
                     const isSelected = chosenOption === optIdx;
                     let optionStyle =
-                      'bg-[#FAFAFC] border-[#E8E8EE] text-[#24243A] hover:border-[#D0BFFF]';
+                      'bg-white/5 border-white/10 text-slate-200 hover:border-cyan-400/40';
 
                     if (isSubmitted) {
                       if (optIdx === q.correctIndex) {
-                        optionStyle = 'bg-[#DDF3E7] border-[#B2E5C9] text-[#05603A] font-bold';
+                        optionStyle = 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300 font-bold';
                       } else if (isSelected && !isCorrect) {
-                        optionStyle = 'bg-[#FFE6DC] border-[#FFCDBC] text-[#93370D] line-through';
+                        optionStyle = 'bg-red-500/20 border-red-500/40 text-red-300 line-through';
                       }
                     } else if (isSelected) {
-                      optionStyle = 'bg-[#E9E1FF] border-[#6941C6] text-[#4919A4] font-bold';
+                      optionStyle = 'bg-cyan-500/20 border-cyan-400 text-cyan-300 font-bold';
                     }
 
                     return (
@@ -292,10 +288,10 @@ export default function ResourcePreview({ resource }) {
                       >
                         <span>{opt}</span>
                         {isSubmitted && optIdx === q.correctIndex && (
-                          <CheckCircle2 className="w-4 h-4 text-[#05603A] shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                         )}
                         {isSubmitted && isSelected && !isCorrect && (
-                          <XCircle className="w-4 h-4 text-[#93370D] shrink-0" />
+                          <XCircle className="w-4 h-4 text-red-400 shrink-0" />
                         )}
                       </button>
                     );
@@ -309,25 +305,25 @@ export default function ResourcePreview({ resource }) {
                       type="button"
                       onClick={() => handleCheckAnswer(q.id)}
                       disabled={chosenOption === undefined}
-                      className="px-4 py-2 bg-[#24243A] text-white rounded-xl text-xs font-bold disabled:opacity-40 hover:bg-black transition-colors"
+                      className="px-4 py-2 bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 rounded-xl text-xs font-bold disabled:opacity-40 hover:opacity-95 transition-all shadow-glow-cyan"
                     >
                       Check Answer
                     </button>
                   ) : (
-                    <div className="p-4 rounded-xl bg-[#FAFAFC] border border-[#E8E8EE] space-y-2 animate-fade-in">
+                    <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2 animate-fade-in">
                       <div className="flex items-center gap-2">
                         {isCorrect ? (
-                          <span className="text-xs font-bold text-[#05603A] flex items-center gap-1">
+                          <span className="text-xs font-bold text-emerald-400 flex items-center gap-1">
                             <CheckCircle2 className="w-4 h-4" /> Correct Answer!
                           </span>
                         ) : (
-                          <span className="text-xs font-bold text-[#93370D] flex items-center gap-1">
-                            <XCircle className="w-4 h-4" /> Not quite right.
+                          <span className="text-xs font-bold text-red-400 flex items-center gap-1">
+                            <XCircle className="w-4 h-4" /> Review Explanation:
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-[#38384E] whitespace-pre-wrap leading-relaxed">
-                        <strong className="text-[#24243A]">Explanation: </strong>
+                      <p className="text-xs text-slate-300 whitespace-pre-wrap leading-relaxed">
+                        <strong className="text-white">Explanation: </strong>
                         {q.explanation}
                       </p>
                     </div>
@@ -353,17 +349,17 @@ export default function ResourcePreview({ resource }) {
     };
 
     return (
-      <div className="bg-white rounded-3xl border border-[#E8E8EE] p-6 sm:p-8 shadow-card space-y-6">
-        <div className="border-b border-[#E8E8EE] pb-4">
+      <div className="glass-card rounded-3xl border border-white/10 p-6 sm:p-8 shadow-glass space-y-6 text-white">
+        <div className="border-b border-white/10 pb-4">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-[#6941C6] bg-[#E9E1FF] px-2.5 py-1 rounded-lg">
+            <span className="text-xs font-bold text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-1 rounded-lg">
               Official Examination Pattern
             </span>
-            <span className="text-xs font-bold text-[#737386]">
+            <span className="text-xs font-bold text-slate-400">
               {resource.pagesCount}
             </span>
           </div>
-          <h3 className="text-lg font-bold text-[#24243A] mt-2">
+          <h3 className="text-lg font-bold text-white mt-2">
             CBSE Examination Paper Preview & Marking Guidelines
           </h3>
         </div>
@@ -376,8 +372,8 @@ export default function ResourcePreview({ resource }) {
               onClick={() => setActivePaperSection(idx)}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 ${
                 activePaperSection === idx
-                  ? 'bg-[#24243A] text-white shadow-subtle'
-                  : 'bg-[#FAFAFC] text-[#737386] border border-[#E8E8EE] hover:border-[#D0BFFF]'
+                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-glow-cyan'
+                  : 'bg-white/5 text-slate-300 border border-white/10 hover:border-cyan-400/30'
               }`}
             >
               {sec.sectionName.split('(')[0]}
@@ -386,26 +382,26 @@ export default function ResourcePreview({ resource }) {
         </div>
 
         {/* Section Details */}
-        <div className="bg-[#FAFAFC] p-4 rounded-2xl border border-[#E8E8EE]">
-          <h4 className="text-sm font-bold text-[#24243A]">{activeSection.sectionName}</h4>
-          <p className="text-xs text-[#737386] mt-0.5">{activeSection.description}</p>
+        <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+          <h4 className="text-sm font-bold text-white">{activeSection.sectionName}</h4>
+          <p className="text-xs text-slate-400 mt-0.5">{activeSection.description}</p>
         </div>
 
-        {/* Sample Questions with Solved Breakdown */}
+        {/* Sample Questions */}
         <div className="space-y-4">
           {activeSection.sampleQuestions.map((q) => {
             const isRevealed = revealedSolutions[q.qNum];
             return (
               <div
                 key={q.qNum}
-                className="p-5 rounded-2xl border border-[#E8E8EE] bg-white space-y-3"
+                className="p-5 rounded-2xl border border-white/10 bg-white/5 space-y-3"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-start gap-2.5">
-                    <span className="text-xs font-bold text-[#4919A4] bg-[#E9E1FF] px-2 py-0.5 rounded-md mt-0.5">
+                    <span className="text-xs font-bold text-cyan-300 bg-cyan-500/20 px-2 py-0.5 rounded-md mt-0.5">
                       {q.qNum}
                     </span>
-                    <p className="text-sm font-bold text-[#24243A] leading-relaxed">
+                    <p className="text-sm font-bold text-white leading-relaxed">
                       {q.text}
                     </p>
                   </div>
@@ -416,7 +412,7 @@ export default function ResourcePreview({ resource }) {
                     {q.options.map((opt, i) => (
                       <div
                         key={i}
-                        className="p-2.5 rounded-xl bg-[#FAFAFC] border border-[#E8E8EE] text-xs font-medium text-[#24243A]"
+                        className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-medium text-slate-200"
                       >
                         {opt}
                       </div>
@@ -427,13 +423,13 @@ export default function ResourcePreview({ resource }) {
                 <div className="pl-8 pt-2">
                   <button
                     onClick={() => toggleSolution(q.qNum)}
-                    className="text-xs font-bold text-[#6941C6] hover:underline flex items-center gap-1"
+                    className="text-xs font-bold text-cyan-400 hover:underline flex items-center gap-1"
                   >
                     <span>{isRevealed ? 'Hide Solution & Marking Scheme' : 'Reveal Solution & Marking Scheme'}</span>
                   </button>
 
                   {isRevealed && (
-                    <div className="mt-3 p-4 rounded-xl bg-[#DDF3E7]/40 border border-[#B2E5C9] text-xs text-[#05603A] space-y-1 animate-fade-in">
+                    <div className="mt-3 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-300 space-y-1 animate-fade-in">
                       <p className="font-bold">Correct Answer / Guideline: {q.answer}</p>
                       <p className="whitespace-pre-wrap">{q.explanation}</p>
                     </div>
@@ -447,13 +443,13 @@ export default function ResourcePreview({ resource }) {
     );
   }
 
-  // Fallback generic clean text preview
+  // Fallback generic preview
   return (
-    <div className="p-8 bg-white rounded-3xl border border-[#E8E8EE] text-center">
-      <FileText className="w-12 h-12 text-[#4919A4] mx-auto mb-3" />
-      <h3 className="text-base font-bold text-[#24243A]">Document Ready for Access</h3>
-      <p className="text-xs text-[#737386] mt-1 max-w-sm mx-auto">
-        Click Open Resource or Download PDF below to access the complete verified file.
+    <div className="p-8 glass-card rounded-3xl border border-white/10 text-center text-white">
+      <FileText className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
+      <h3 className="text-base font-bold text-white">Document Ready for Access</h3>
+      <p className="text-xs text-slate-400 mt-1 max-w-sm mx-auto">
+        Click Open Resource or Download Study Guide below to access the complete verified file.
       </p>
     </div>
   );

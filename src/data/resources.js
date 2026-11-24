@@ -837,11 +837,11 @@ Derivation Steps:
 ];
 
 export const INITIAL_STUDENT_PROFILE = {
-  name: 'Aarav Sharma',
-  school: 'Delhi Public School, R.K. Puram',
+  name: '',
+  school: '',
   currentClass: 'Class 12',
   board: 'CBSE',
-  stream: 'Science (PCM + CS)',
-  learningHours: 42.5,
+  stream: 'Science',
+  learningHours: 0,
   avatarColor: '#E9E1FF'
 };

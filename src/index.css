@@ -3,10 +3,48 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --theme-bg: #F8F9FC;
+    --theme-text: #0F172A;
+    --theme-text-muted: #475569;
+    --theme-card-bg: rgba(255, 255, 255, 0.95);
+    --theme-card-border: #E2E8F0;
+    --theme-nav-bg: rgba(255, 255, 255, 0.92);
+    --theme-accent: #7C3AED;
+    --theme-accent-light: #EDE9FE;
+  }
+
+  [data-theme="cosmic"] {
+    --theme-bg: #080B16;
+    --theme-text: #F8FAFC;
+    --theme-text-muted: #94A3B8;
+    --theme-card-bg: rgba(15, 21, 40, 0.75);
+    --theme-card-border: rgba(255, 255, 255, 0.08);
+    --theme-nav-bg: rgba(8, 11, 22, 0.85);
+    --theme-accent: #06B6D4;
+    --theme-accent-light: rgba(6, 182, 212, 0.15);
+  }
+
+  [data-theme="aurora"] {
+    --theme-bg: #F4F5F9;
+    --theme-text: #0F172A;
+    --theme-text-muted: #475569;
+    --theme-card-bg: #FFFFFF;
+    --theme-card-border: #E2E8F0;
+    --theme-nav-bg: rgba(255, 255, 255, 0.95);
+    --theme-accent: #7C3AED;
+    --theme-accent-light: #EDE9FE;
+  }
+
   body {
-    background-color: #FAFAFC;
-    color: #24243A;
+    background-color: var(--theme-bg);
+    color: var(--theme-text);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: inherit;
   }
 }
 
@@ -20,12 +58,21 @@
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+[data-theme="cosmic"] ::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 9999px;
+}
+
+[data-theme="cosmic"] ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+[data-theme="aurora"] ::-webkit-scrollbar-thumb {
   background: #E8E8EE;
   border-radius: 9999px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+[data-theme="aurora"] ::-webkit-scrollbar-thumb:hover {
   background: #D1D1DE;
 }
 
@@ -34,14 +81,87 @@ input:focus, select:focus, button:focus-visible {
   outline: none;
 }
 
-/* Custom subtle animation */
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--theme-nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: var(--theme-card-border);
+}
+
+.glass-card {
+  background: var(--theme-card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--theme-card-border);
+}
+
+[data-theme="aurora"] .glass-card {
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="aurora"] .glass-panel {
+  box-shadow: 0 2px 12px -2px rgba(15, 23, 42, 0.05);
+}
+
+.glass-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-2px);
+}
+
+[data-theme="cosmic"] .glass-card-hover:hover {
+  box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.18), 0 0 20px rgba(139, 92, 246, 0.12);
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+[data-theme="aurora"] .glass-card-hover:hover {
+  box-shadow: 0 12px 30px -10px rgba(36, 36, 58, 0.08), 0 0 20px rgba(105, 65, 198, 0.06);
+  border-color: #D0BFFF;
+}
+
+/* Hologram & Neon Glow utilities */
+.neon-glow-cyan {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.35);
+}
+
+.neon-glow-violet {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+}
+
+/* Custom subtle animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
 }
 
 /* Accessibility: Respect user reduced-motion preference */
@@ -51,4 +171,81 @@ input:focus, select:focus, button:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+/* Fix white/light text visibility in Aurora theme */
+[data-theme="aurora"] .text-white {
+  color: #0F172A !important;
+}
+
+[data-theme="aurora"] .text-slate-100,
+[data-theme="aurora"] .text-slate-200 {
+  color: #1E293B !important;
+}
+
+[data-theme="aurora"] .text-slate-300 {
+  color: #334155 !important;
+}
+
+/* Keep white text on solid/gradient colored buttons */
+[data-theme="aurora"] button.bg-violet-600,
+[data-theme="aurora"] button.bg-purple-600,
+[data-theme="aurora"] button.bg-cyan-600,
+[data-theme="aurora"] button[class*="from-"] {
+  color: #FFFFFF !important;
+}
+/* =========================================
+   UPGRADED COSMIC & AURORA THEME VISUALS
+   ========================================= */
+
+/* 1. Multi-color Nebula Background for Cosmic Theme */
+[data-theme="cosmic"] body,
+html[data-theme="cosmic"] body {
+  background-color: #090D1E !important;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(124, 58, 237, 0.25), transparent 42%),
+    radial-gradient(circle at 88% 15%, rgba(6, 182, 212, 0.20), transparent 40%),
+    radial-gradient(circle at 55% 88%, rgba(236, 72, 153, 0.16), transparent 45%) !important;
+  background-attachment: fixed !important;
+}
+
+/* Luminous Glass Cards in Cosmic Theme */
+[data-theme="cosmic"] .glass-card,
+[data-theme="cosmic"] .glass-panel {
+  background: rgba(17, 24, 48, 0.68) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(139, 92, 246, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+[data-theme="cosmic"] .glass-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 211, 238, 0.45) !important;
+  box-shadow: 0 12px 36px rgba(6, 182, 212, 0.12) !important;
+}
+
+/* 2. Soft Pastel Mesh Background for Aurora Theme */
+[data-theme="aurora"] body,
+html[data-theme="aurora"] body {
+  background-color: #F7F5FF !important;
+  background-image:
+    radial-gradient(circle at 10% 15%, rgba(216, 180, 254, 0.45), transparent 45%),
+    radial-gradient(circle at 90% 20%, rgba(165, 243, 252, 0.45), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(254, 205, 211, 0.38), transparent 50%) !important;
+  background-attachment: fixed !important;
+}
+
+/* Frosted Pastel Cards in Aurora Theme */
+[data-theme="aurora"] .glass-card,
+[data-theme="aurora"] .glass-panel {
+  background: rgba(255, 255, 255, 0.78) !important;
+  backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(196, 181, 253, 0.5) !important;
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.07) !important;
+  transition: transform 0.2s ease, border-color 0.2s ease !important;
+}
+
+[data-theme="aurora"] .glass-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(167, 139, 250, 0.8) !important;
 }

@@ -81,9 +81,9 @@ export default function ResourceDetails() {
             <title>${activeResource.title} - STUDO Vault</title>
             <style>
               body { font-family: system-ui, -apple-system, sans-serif; padding: 40px; max-width: 800px; margin: auto; color: #24243A; line-height: 1.6; }
-              h1 { color: #4919A4; border-bottom: 2px solid #E9E1FF; padding-bottom: 12px; }
-              .meta { color: #737386; font-size: 14px; margin-bottom: 24px; }
-              .card { background: #FAFAFC; padding: 20px; border-radius: 12px; border: 1px solid #E8E8EE; margin-bottom: 20px; }
+              h1 { color: #0284C7; border-bottom: 2px solid #38BDF8; padding-bottom: 12px; }
+              .meta { color: #64748B; font-size: 14px; margin-bottom: 24px; }
+              .card { background: #F8FAFC; padding: 20px; border-radius: 12px; border: 1px solid #E2E8F0; margin-bottom: 20px; }
             </style>
           </head>
           <body>
@@ -126,14 +126,14 @@ export default function ResourceDetails() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 animate-fade-in">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fade-in text-white">
       {/* Top Bar: Back Button & Actions */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <button
           onClick={() => navigateTo('explore')}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-[#E8E8EE] text-xs font-bold text-[#24243A] hover:bg-slate-50 transition-colors shadow-subtle group"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass-card border border-white/10 text-xs font-bold text-slate-300 hover:text-white hover:bg-white/10 transition-colors shadow-glass group"
         >
-          <ArrowLeft className="w-4 h-4 text-[#737386] group-hover:-translate-x-0.5 transition-transform" />
+          <ArrowLeft className="w-4 h-4 text-cyan-400 group-hover:-translate-x-0.5 transition-transform" />
           <span>Back to Explore</span>
         </button>
 
@@ -141,7 +141,7 @@ export default function ResourceDetails() {
           <button
             onClick={handleShare}
             aria-label="Share resource"
-            className="p-2.5 rounded-xl bg-white border border-[#E8E8EE] text-[#737386] hover:text-[#24243A] hover:bg-slate-50 transition-colors shadow-subtle"
+            className="p-2.5 rounded-xl glass-card border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-colors shadow-glass"
             title="Share Link"
           >
             <Share2 className="w-4 h-4" />
@@ -149,20 +149,20 @@ export default function ResourceDetails() {
 
           <button
             onClick={(e) => toggleSaveResource(activeResource.id, e)}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-all shadow-subtle ${
+            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-all shadow-glass ${
               isSaved
-                ? 'bg-[#E9E1FF] text-[#4919A4] border-[#D0BFFF]'
-                : 'bg-white text-[#24243A] border-[#E8E8EE] hover:bg-slate-50'
+                ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40 shadow-glow-cyan'
+                : 'glass-card text-slate-300 border-white/10 hover:text-white hover:bg-white/10'
             }`}
           >
-            <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-[#4919A4]' : ''}`} />
+            <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-cyan-300' : ''}`} />
             <span>{isSaved ? 'Saved in My Resources' : 'Save Resource'}</span>
           </button>
         </div>
       </div>
 
       {/* A. Resource Header */}
-      <div className="bg-white rounded-3xl border border-[#E8E8EE] p-6 sm:p-8 shadow-card space-y-4">
+      <div className="glass-card rounded-3xl border border-white/10 p-6 sm:p-8 shadow-glass space-y-4">
         <div className="flex flex-wrap items-center gap-2">
           <span
             className="text-xs font-bold px-3 py-1 rounded-lg"
@@ -170,29 +170,29 @@ export default function ResourceDetails() {
           >
             {activeResource.subject}
           </span>
-          <span className="text-xs font-semibold text-[#24243A] bg-slate-100 px-3 py-1 rounded-lg">
+          <span className="text-xs font-semibold text-white bg-white/10 px-3 py-1 rounded-lg">
             {activeResource.classLevel}
           </span>
-          <span className="text-xs font-semibold text-[#737386] bg-slate-100 px-3 py-1 rounded-lg">
+          <span className="text-xs font-semibold text-slate-300 bg-white/5 px-3 py-1 rounded-lg">
             {activeResource.board}
           </span>
-          <span className="text-xs font-bold text-[#6941C6] bg-[#E9E1FF] px-3 py-1 rounded-lg">
+          <span className="text-xs font-bold text-cyan-300 bg-cyan-500/15 border border-cyan-500/30 px-3 py-1 rounded-lg">
             {activeResource.resourceType}
           </span>
-          <span className="text-xs font-semibold text-[#05603A] bg-[#DDF3E7] px-3 py-1 rounded-lg">
+          <span className="text-xs font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-3 py-1 rounded-lg">
             {activeResource.difficulty}
           </span>
         </div>
 
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#24243A] tracking-tight leading-snug">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-snug">
           {activeResource.title}
         </h1>
 
-        <div className="flex flex-wrap items-center gap-4 text-xs text-[#737386] pt-1 border-t border-[#F1F1F4]">
-          <span className="font-semibold text-[#24243A]">Chapter: {activeResource.chapter}</span>
+        <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 pt-2 border-t border-white/10">
+          <span className="font-semibold text-white">Chapter: {activeResource.chapter}</span>
           <span>•</span>
           <span className="flex items-center gap-1">
-            <Clock className="w-3.5 h-3.5" />
+            <Clock className="w-3.5 h-3.5 text-cyan-400" />
             {activeResource.estimatedTime}
           </span>
           <span>•</span>
@@ -206,29 +206,29 @@ export default function ResourceDetails() {
       <div className="flex flex-wrap items-center gap-3">
         <button
           onClick={handleOpenFullscreen}
-          className="flex-1 min-w-[200px] inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#24243A] text-white rounded-2xl text-sm font-bold shadow-subtle hover:bg-black transition-all"
+          className="flex-1 min-w-[200px] inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 text-slate-950 rounded-2xl text-xs font-bold uppercase tracking-wider shadow-glow-cyan hover:opacity-95 transition-all"
         >
-          <ExternalLink className="w-4 h-4 text-[#E9E1FF]" />
+          <ExternalLink className="w-4 h-4" />
           <span>Open Full Resource</span>
         </button>
 
         <button
           onClick={handleDownload}
-          className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white border border-[#E8E8EE] text-[#24243A] rounded-2xl text-sm font-bold shadow-subtle hover:bg-slate-50 transition-all"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3.5 glass-card border border-white/15 text-white rounded-2xl text-xs font-bold uppercase tracking-wider shadow-glass hover:bg-white/10 transition-all"
         >
-          <Download className="w-4 h-4 text-[#6941C6]" />
-          <span>Download PDF / Study Guide</span>
+          <Download className="w-4 h-4 text-cyan-400" />
+          <span>Download Study Guide</span>
         </button>
 
         <button
           onClick={(e) => toggleSaveResource(activeResource.id, e)}
-          className={`inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl text-sm font-bold border transition-all ${
+          className={`inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl text-xs font-bold border transition-all ${
             isSaved
-              ? 'bg-[#E9E1FF] text-[#4919A4] border-[#D0BFFF]'
-              : 'bg-white text-[#24243A] border-[#E8E8EE] hover:bg-slate-50'
+              ? 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40 shadow-glow-cyan'
+              : 'glass-card text-white border-white/10 hover:bg-white/10'
           }`}
         >
-          <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-[#4919A4]' : ''}`} />
+          <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-cyan-300' : ''}`} />
           <span>{isSaved ? 'Saved' : 'Save'}</span>
         </button>
       </div>
@@ -236,8 +236,8 @@ export default function ResourceDetails() {
       {/* C. Resource Preview */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-[#24243A]">Interactive Material Preview</h2>
-          <span className="text-xs text-[#737386]">Live interactive preview</span>
+          <h2 className="text-lg font-bold text-white">Interactive Material Preview</h2>
+          <span className="text-xs text-slate-400">Live preview engine</span>
         </div>
         <ResourcePreview resource={activeResource} />
       </section>
@@ -245,19 +245,19 @@ export default function ResourceDetails() {
       {/* B. Resource Description & Learning Outcomes */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left: What this covers */}
-        <div className="bg-white rounded-3xl border border-[#E8E8EE] p-6 sm:p-7 shadow-subtle space-y-4">
-          <div className="flex items-center gap-2 pb-2 border-b border-[#F1F1F4]">
-            <Layers className="w-4 h-4 text-[#6941C6]" />
-            <h3 className="text-base font-bold text-[#24243A]">What This Resource Covers</h3>
+        <div className="glass-card rounded-3xl border border-white/10 p-6 sm:p-7 shadow-glass space-y-4">
+          <div className="flex items-center gap-2 pb-2 border-b border-white/10">
+            <Layers className="w-4 h-4 text-cyan-400" />
+            <h3 className="text-base font-bold text-white">What This Resource Covers</h3>
           </div>
-          <p className="text-xs sm:text-sm text-[#737386] leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             {activeResource.fullDescription}
           </p>
           <ul className="space-y-2.5 pt-2">
             {activeResource.whatItCovers &&
               activeResource.whatItCovers.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-xs text-[#24243A]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#6941C6] mt-1.5 shrink-0" />
+                <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-200">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0" />
                   <span className="leading-relaxed">{item}</span>
                 </li>
               ))}
@@ -265,20 +265,20 @@ export default function ResourceDetails() {
         </div>
 
         {/* Right: What students learn */}
-        <div className="bg-white rounded-3xl border border-[#E8E8EE] p-6 sm:p-7 shadow-subtle space-y-4">
-          <div className="flex items-center gap-2 pb-2 border-b border-[#F1F1F4]">
-            <Sparkles className="w-4 h-4 text-[#067647]" />
-            <h3 className="text-base font-bold text-[#24243A]">Target Learning Outcomes</h3>
+        <div className="glass-card rounded-3xl border border-white/10 p-6 sm:p-7 shadow-glass space-y-4">
+          <div className="flex items-center gap-2 pb-2 border-b border-white/10">
+            <Sparkles className="w-4 h-4 text-emerald-400" />
+            <h3 className="text-base font-bold text-white">Target Learning Outcomes</h3>
           </div>
-          <p className="text-xs sm:text-sm text-[#737386] leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             By engaging with this material, students will develop practical mastery and
             exam confidence in the following competencies:
           </p>
           <ul className="space-y-2.5 pt-2">
             {activeResource.learningOutcomes &&
               activeResource.learningOutcomes.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-xs text-[#24243A]">
-                  <CheckCircle2 className="w-4 h-4 text-[#067647] shrink-0 mt-0.5" />
+                <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-200">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                   <span className="leading-relaxed">{item}</span>
                 </li>
               ))}
@@ -288,17 +288,17 @@ export default function ResourceDetails() {
 
       {/* E. Related Resources */}
       {relatedResources.length > 0 && (
-        <section className="space-y-4 pt-6 border-t border-[#E8E8EE]">
+        <section className="space-y-4 pt-6 border-t border-white/10">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-bold text-[#24243A]">Related Study Materials</h2>
-              <p className="text-xs text-[#737386]">
+              <h2 className="text-lg font-bold text-white">Related Study Materials</h2>
+              <p className="text-xs text-slate-400">
                 More curated resources from {activeResource.subject} and {activeResource.classLevel}
               </p>
             </div>
             <button
               onClick={() => navigateTo('explore')}
-              className="text-xs font-bold text-[#4919A4] hover:underline"
+              className="text-xs font-bold text-cyan-400 hover:underline"
             >
               Browse all →
             </button>
@@ -309,7 +309,7 @@ export default function ResourceDetails() {
               <div
                 key={res.id}
                 onClick={() => openResource(res.id)}
-                className="p-4 rounded-2xl bg-white border border-[#E8E8EE] hover:border-[#D0BFFF] hover:shadow-card-hover transition-all cursor-pointer group flex flex-col justify-between"
+                className="p-4 rounded-2xl glass-card border border-white/10 hover:border-cyan-400/40 hover:shadow-glow-cyan transition-all cursor-pointer group flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between gap-1 mb-2">
@@ -322,16 +322,16 @@ export default function ResourceDetails() {
                     >
                       {res.subject}
                     </span>
-                    <span className="text-[10px] font-semibold text-[#737386] bg-slate-100 px-2 py-0.5 rounded-md">
+                    <span className="text-[10px] font-semibold text-slate-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded-md">
                       {res.resourceType}
                     </span>
                   </div>
-                  <h4 className="text-sm font-bold text-[#24243A] group-hover:text-[#4919A4] transition-colors line-clamp-2">
+                  <h4 className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors line-clamp-2">
                     {res.title}
                   </h4>
                 </div>
 
-                <div className="mt-4 pt-2 border-t border-[#F1F1F4] flex items-center justify-between text-xs font-bold text-[#4919A4]">
+                <div className="mt-4 pt-2 border-t border-white/10 flex items-center justify-between text-xs font-bold text-cyan-400">
                   <span>View Material</span>
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </div>
