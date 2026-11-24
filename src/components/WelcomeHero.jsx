@@ -18,8 +18,8 @@ export default function WelcomeHero() {
     return (
       <section className="relative overflow-hidden rounded-3xl glass-card text-slate-900 dark:text-white p-6 sm:p-8 md:p-10 shadow-xl border border-slate-200/80 dark:border-white/10">
         {/* Glow backdrop blobs */}
-        <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-cyan-500/15 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-violet-600/15 blur-3xl pointer-events-none" />
+        <div className="animate-float-slow absolute -top-16 -right-16 w-64 h-64 rounded-full bg-cyan-500/15 blur-3xl pointer-events-none" />
+        <div className="animate-float-slow absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-violet-600/15 blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
@@ -29,7 +29,7 @@ export default function WelcomeHero() {
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
   Welcome back,{' '}
-  <span className="bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-500 dark:from-cyan-300 dark:via-violet-300 dark:to-pink-300 bg-clip-text text-transparent">
+  <span className="animate-gradient-text bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-500 dark:from-cyan-300 dark:via-violet-300 dark:to-pink-300 bg-clip-text text-transparent">
     {currentUser.name}!
   </span>{' '}
   👋
@@ -68,8 +68,8 @@ export default function WelcomeHero() {
   // If user is NOT logged in: Requirement Part 3
   return (
     <section className="relative overflow-hidden rounded-3xl glass-card text-slate-900 dark:text-white p-6 sm:p-10 md:p-12 shadow-xl border border-slate-200/80 dark:border-white/10 text-center sm:text-left">
-      <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-cyan-500/15 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-violet-600/15 blur-3xl pointer-events-none" />
+      <div className="animate-float-slow absolute -top-20 -right-20 w-80 h-80 rounded-full bg-cyan-500/15 blur-3xl pointer-events-none" />
+      <div className="animate-float-slow absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-violet-600/15 blur-3xl pointer-events-none" />
 
       <div className="relative z-10 max-w-2xl space-y-4">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-100/70 dark:bg-white/10 backdrop-blur-md text-cyan-800 dark:text-cyan-300 text-xs font-bold border border-cyan-200/70 dark:border-white/10 shadow-sm">
@@ -79,7 +79,7 @@ export default function WelcomeHero() {
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
   Welcome,{' '}
-  <span className="bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-500 dark:from-cyan-300 dark:via-violet-300 dark:to-pink-300 bg-clip-text text-transparent">
+  <span className="animate-gradient-text bg-gradient-to-r from-violet-600 via-fuchsia-500 to-cyan-500 dark:from-cyan-300 dark:via-violet-300 dark:to-pink-300 bg-clip-text text-transparent">
     Buddy!
   </span>
 </h1>
