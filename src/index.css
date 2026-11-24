@@ -303,3 +303,56 @@ html[data-theme="aurora"] body {
 .glass-card {
   animation: fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+/* =========================================
+   CONTINUOUS MOVEMENT & INTERACTIVE MOTION
+   ========================================= */
+
+@keyframes backgroundDrift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes pulseRing {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 1;
+  }
+}
+
+/* Slowly drifting nebula/pastel background */
+[data-theme="cosmic"] body,
+[data-theme="aurora"] body {
+  background-size: 160% 160% !important;
+  animation: backgroundDrift 18s ease-in-out infinite !important;
+}
+
+/* Staggered card wave entrance */
+.glass-card:nth-child(1) { animation-delay: 0.05s; }
+.glass-card:nth-child(2) { animation-delay: 0.16s; }
+.glass-card:nth-child(3) { animation-delay: 0.27s; }
+.glass-card:nth-child(4) { animation-delay: 0.38s; }
+
+/* Smooth hover lift + glow for cards and buttons */
+.glass-card {
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease !important;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px) scale(1.01) !important;
+}
+
+/* Gentle breathing pulse for badges/icons */
+.animate-pulse-soft {
+  animation: pulseRing 3s ease-in-out infinite;
+}

@@ -67,7 +67,7 @@ export default function WelcomeHero() {
 
   // If user is NOT logged in: Requirement Part 3
   return (
-    <section className="relative overflow-hidden rounded-3xl glass-card text-slate-900 dark:text-white p-6 sm:p-10 md:p-12 shadow-xl border border-slate-200/80 dark:border-white/10 text-center sm:text-left">
+    <section className="flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden rounded-3xl glass-card text-slate-900 dark:text-white p-6 sm:p-10 md:p-12 shadow-xl border border-slate-200/80 dark:border-white/10 text-center sm:text-left">
       <div className="animate-float-slow absolute -top-20 -right-20 w-80 h-80 rounded-full bg-cyan-500/15 blur-3xl pointer-events-none" />
       <div className="animate-float-slow absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-violet-600/15 blur-3xl pointer-events-none" />
 
@@ -137,6 +137,28 @@ export default function WelcomeHero() {
           </div>
 
       </div>
+              {/* Floating Animated Study Cards on the Right */}
+        <div className="hidden lg:flex flex-col gap-3 relative z-10 w-72 shrink-0">
+          <div className="animate-float-slow p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-violet-300/40 dark:border-cyan-400/30 shadow-lg flex items-center gap-3">
+            <span className="text-2xl animate-pulse-soft">🚀</span>
+            <div>
+              <p className="text-xs font-bold text-slate-900 dark:text-white">SmartPlan AI Ready</p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">Personalized CBSE roadmap</p>
+            </div>
+          </div>
+
+          <div
+            style={{ animationDelay: '1.5s' }}
+            className="animate-float-slow ml-6 p-4 rounded-2xl bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-pink-300/40 dark:border-violet-400/30 shadow-lg flex items-center gap-3"
+          >
+            <span className="text-2xl">✨</span>
+            <div>
+              <p className="text-xs font-bold text-slate-900 dark:text-white">Verified Notes & PYQs</p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">Class 9–12 Curated Library</p>
+            </div>
+          </div>
+        </div>
+
     </section>
   );
 }
